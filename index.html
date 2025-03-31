@@ -38,11 +38,66 @@
         .main-nav {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-right: 2rem;
         }
         
         .logo {
-            margin-right: 2rem;
+            margin-right: 1rem;
+        }
+        
+        .app-dev-text {
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .red-hat-summit-logo {
+            display: block;
+            width: 140px;
+            height: 50px;
+            background-color: #cc0000;
+            border-radius: 6px;
+            color: white;
+            text-align: center;
+            position: relative;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+        
+        .logo-text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo-text-top {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        
+        .logo-text-bottom {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: -3px;
+        }
+        
+        .logo-pointer {
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #cc0000;
         }
         
         .main-menu {
@@ -50,6 +105,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            margin-left: auto;
         }
         
         .main-menu li {
@@ -148,17 +204,21 @@
         
         .catalog-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
         }
         
         .catalog-item {
-            background-color: var(--card-bg);
-            border-radius: 4px;
+            background-color: var(--background-color);
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease;
-            border: 1px solid #444;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #333;
+            box-shadow: none;
+            padding-bottom: 2rem;
         }
         
         .catalog-item:hover {
@@ -166,47 +226,75 @@
         }
         
         .catalog-image-container {
-            height: 180px;
+            height: 80px;
+            width: 80px;
             overflow: hidden;
             position: relative;
-            border-bottom: 1px solid #444;
+            border: none;
+            margin-bottom: 1.5rem;
         }
         
         .catalog-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .catalog-image:hover {
-            transform: scale(1.05);
+            border-radius: 8px;
+            box-shadow: 5px 5px 0 rgba(204, 0, 0, 0.5);
         }
         
         .catalog-details {
-            padding: 1.25rem;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+        }
+        
+        .catalog-pre-title {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 0.75rem;
         }
         
         .catalog-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 600;
+            line-height: 1.2;
         }
         
         .catalog-description {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #ccc;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            flex-grow: 0;
+            overflow: visible;
+            display: block;
+            -webkit-line-clamp: unset;
+            -webkit-box-orient: unset;
         }
         
-        .catalog-category {
+        .catalog-button {
             display: inline-block;
-            padding: 0.3rem 0.6rem;
-            background-color: var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            background-color: transparent;
             color: white;
-            font-size: 0.8rem;
-            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid white;
+            border-radius: 0;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-top: auto;
+            width: fit-content;
+        }
+        
+        .catalog-button:hover {
+            background-color: white;
+            color: var(--background-color);
         }
         
         .no-results {
@@ -236,12 +324,13 @@
                 align-items: flex-start;
             }
             
-            .logo {
+            .logo-container {
                 margin-bottom: 1rem;
             }
             
             .main-menu {
                 flex-wrap: wrap;
+                margin-left: 0;
             }
             
             .main-menu li {
@@ -254,16 +343,17 @@
     <header>
         <div class="container">
             <nav class="main-nav">
-                <div class="logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="140" height="36" viewBox="0 0 140 36">
-                        <g fill="none" fill-rule="evenodd">
-                            <path fill="#CC0000" d="M127.333 21.5c0 3.584-2.916 6.5-6.5 6.5s-6.5-2.916-6.5-6.5 2.916-6.5 6.5-6.5 6.5 2.916 6.5 6.5M99.667 8.937l-3.292 12.195-3.292-12.195h-4.083L85.708 21.13l-3.291-12.195h-5.084l5.417 18.292h4.416l3.709-12.277 3.708 12.277h4.417l5.417-18.292zM69.333 18.937c0-2.186-.375-3.966-1.125-5.339-.75-1.373-1.834-2.436-3.25-3.19-1.417-.756-3.219-1.133-5.408-1.133h-9.217v18.292h4.983v-4.834h4.109c2.25 0 4.075-.366 5.475-1.1 1.4-.732 2.442-1.77 3.125-3.116.683-1.346 1.025-3.106 1.025-5.28v-.3zm-4.983 0c0 1.219-.175 2.153-.525 2.802-.35.649-.9 1.116-1.65 1.4-.75.285-1.75.428-3 .428h-4v-9.297h4c1.25 0 2.25.143 3 .428.75.284 1.3.76 1.65 1.428.35.667.525 1.61.525 2.811zM135.133 8.938l-8.183 18.291h5.3l1.65-3.708h8.767l1.65 3.708h5.35l-8.184-18.291h-6.35zm4.367 4.008l2.683 6.334h-5.517l2.834-6.334z"/>
-                            <path fill="#FFFFFF" d="M49.23 10.979c-.718-.49-1.564-.735-2.538-.735-1.119 0-2.084.37-2.893 1.11-.81.742-1.303 1.675-1.48 2.8h-2.767l-.667-2.25H36v13.334h5V16.5h4c.234.967.751 1.742 1.551 2.324.8.582 1.751.873 2.852.873 1.067 0 1.948-.237 2.644-.711.697-.474 1.267-1.117 1.712-1.93.444-.812.701-1.743.773-2.792.073-1.05-.078-1.973-.452-2.769-.375-.795-.932-1.39-1.67-1.785l-.18.269zM44.333 16c-.2.333-.45.583-.75.75-.3.167-.683.25-1.15.25-.467 0-.85-.083-1.15-.25-.3-.167-.55-.417-.75-.75-.2-.333-.3-.75-.3-1.25s.1-.917.3-1.25c.2-.333.45-.583.75-.75.3-.167.683-.25 1.15-.25.467 0 .85.083 1.15.25.3.167.55.417.75.75.2.333.3.75.3 1.25s-.1.917-.3 1.25z"/>
-                            <path fill="#FFFFFF" d="M36 11.8c-.25-.61-.614-1.1-1.094-1.47-.48-.37-1.045-.555-1.698-.555-.652 0-1.218.185-1.698.555-.48.37-.843.86-1.092 1.47-.25.612-.374 1.317-.374 2.117v4.125c0 .8.125 1.51.374 2.13.25.618.613 1.105 1.092 1.46.48.355 1.046.533 1.698.533.653 0 1.219-.178 1.698-.534.48-.355.843-.841 1.094-1.459.25-.618.376-1.33.376-2.13v-4.125c0-.8-.126-1.505-.376-2.116zm-2.5 6.075c0 .25-.035.467-.105.65a.997.997 0 01-.313.442c-.143.11-.334.166-.573.166-.24 0-.43-.055-.573-.166a.997.997 0 01-.313-.443 1.705 1.705 0 01-.105-.65v-3.792c0-.25.035-.465.105-.645a.97.97 0 01.313-.433.998.998 0 01.573-.163c.24 0 .43.054.573.163.143.11.243.253.313.433.07.18.105.396.105.645v3.792zM27.667 9.042s-1.567.075-3.334.325c-1.766.25-3.416.566-4.333.841-.583.175-1.15.375-1.7.6V27.5h3.034V13.308c.438-.158.88-.3 1.325-.425 1.026-.291 2.59-.61 3.675-.717V9.042h1.333z"/>
-                            <path fill="#FFFFFF" d="M16.5 9.042s-1.567.075-3.334.325C11.4 9.617 9.75 9.933 8.833 10.208c-.583.175-1.15.375-1.7.6V27.5h3.034V13.308c.438-.158.88-.3 1.325-.425 1.026-.291 2.59-.61 3.675-.717V9.042H16.5z"/>
-                            <path fill="#CC0000" d="M18.337 22.883c2.417-.017 4.391-1.992 4.396-4.428.005-2.436-1.975-4.422-4.42-4.422-2.416-.025-4.39 1.95-4.396 4.386-.005 2.461 1.975 4.447 4.42 4.464zm0-6.75c1.275 0 2.32 1.042 2.325 2.328.005 1.31-1.028 2.347-2.337 2.347-1.279 0-2.319-1.048-2.324-2.335-.004-1.285 1.053-2.34 2.337-2.34z"/>
-                        </g>
-                    </svg>
+                <div class="logo-container">
+                    <div class="logo">
+                        <a href="#" class="red-hat-summit-logo">
+                            <div class="logo-text-container">
+                                <div class="logo-text-top">Red Hat</div>
+                                <div class="logo-text-bottom">Summit</div>
+                            </div>
+                            <div class="logo-pointer"></div>
+                        </a>
+                    </div>
+                    <div class="app-dev-text">Red Hat App Dev</div>
                 </div>
                 <ul class="main-menu">
                     <li><a href="#">AI</a></li>
@@ -301,67 +391,67 @@
         const catalogData = [
             {
                 id: 1,
-                title: "Responsive Web Design Guide",
-                description: "A comprehensive guide to creating responsive websites that work on all devices",
+                title: "Red Hat Enterprise Linux",
+                description: "Support application deployments—from on premise to the cloud to the edge—in a flexible operating environment.",
                 category: "Web Development",
-                imageUrl: "https://source.unsplash.com/random/600x400/?webdesign",
-                link: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design"
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48c3R5bGU+LmEsLmIsLmN7ZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6MTBweDt9LmF7c3Ryb2tlOiNjYzAwMDA7fS5ie3N0cm9rZTojZmZmO30uY3tzdHJva2U6I2FhYTt9PC9zdHlsZT48L2RlZnM+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTkxOTE5Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAsIDMwKSI+PHBhdGggY2xhc3M9ImEiIGQ9Ik0wLDAgTDYwLDAgTDYwLDYwIEwwLDYwIFoiIHRyYW5zZm9ybT0icm90YXRlKDApIHRyYW5zbGF0ZSgtMzAsLTMwKSIgLz48cGF0aCBjbGFzcz0iYiIgZD0iTTAsMCBMNjAsMCBMNjAsNjAgTDAsNjAgWiIgdHJhbnNmb3JtPSJyb3RhdGUoMjUpIHRyYW5zbGF0ZSgtMzAsLTMwKSIgLz48cGF0aCBjbGFzcz0iYyIgZD0iTTAsMCBMNjAsMCBMNjAsNjAgTDAsNjAgWiIgdHJhbnNmb3JtPSJyb3RhdGUoNTApIHRyYW5zbGF0ZSgtMzAsLTMwKSIgLz48L2c+PC9zdmc+",
+                link: "https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux"
             },
             {
                 id: 2,
-                title: "JavaScript Fundamentals",
-                description: "Learn core JavaScript concepts with practical examples and exercises",
+                title: "Red Hat OpenShift",
+                description: "An enterprise-ready Kubernetes container platform built for an open hybrid cloud strategy.",
                 category: "Programming",
-                imageUrl: "https://source.unsplash.com/random/600x400/?javascript",
-                link: "https://javascript.info/"
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48c3R5bGU+LmEsLmIsLmN7ZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6MTBweDt9LmF7c3Ryb2tlOiNjYzAwMDA7fS5ie3N0cm9rZTojZmZmO30uY3tzdHJva2U6I2FhYTt9PC9zdHlsZT48L2RlZnM+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTkxOTE5Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjAsIDYwKSI+PGNpcmNsZSBjbGFzcz0iYSIgY3g9IjAiIGN5PSIwIiByPSIzMCIgLz48Y2lyY2xlIGNsYXNzPSJiIiBjeD0iMCIgY3k9IjAiIHI9IjIwIiAvPjxjaXJjbGUgY2xhc3M9ImMiIGN4PSIwIiBjeT0iMCIgcj0iMTAiIC8+PC9nPjwvc3ZnPg==",
+                link: "https://www.redhat.com/en/technologies/cloud-computing/openshift"
             },
             {
                 id: 3,
-                title: "UI/UX Design Principles",
-                description: "Essential principles and best practices for creating great user experiences",
+                title: "Red Hat Ansible Automation",
+                description: "A comprehensive automation platform that helps organizations innovate faster with reduced risk.",
                 category: "Design",
-                imageUrl: "https://source.unsplash.com/random/600x400/?uxdesign",
-                link: "https://www.nngroup.com/articles/ten-usability-heuristics/"
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48c3R5bGU+LmEsLmIsLmN7ZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6MTBweDt9LmF7c3Ryb2tlOiNjYzAwMDA7fS5ie3N0cm9rZTojZmZmO30uY3tzdHJva2U6I2FhYTt9PC9zdHlsZT48L2RlZnM+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTkxOTE5Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAsIDMwKSI+PHBvbHlnb24gY2xhc3M9ImEiIHBvaW50cz0iMCwwIDYwLDAgMzAsNTAiIC8+PHBvbHlnb24gY2xhc3M9ImIiIHBvaW50cz0iMTUsMTUgNDUsMTUgMzAsNDUiIC8+PHBvbHlnb24gY2xhc3M9ImMiIHBvaW50cz0iMjAsMjAgNDAsMjAgMzAsMzUiIC8+PC9nPjwvc3ZnPg==",
+                link: "https://www.redhat.com/en/technologies/management/ansible"
             },
             {
                 id: 4,
-                title: "Git & GitHub Tutorial",
-                description: "Master version control with Git and collaboration with GitHub",
+                title: "Red Hat Developer Tools",
+                description: "Gain access to the tools, technologies and resources needed to develop applications for hybrid environments.",
                 category: "Development Tools",
-                imageUrl: "https://source.unsplash.com/random/600x400/?github",
-                link: "https://docs.github.com/en/get-started/quickstart"
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48c3R5bGU+LmEsLmIsLmN7ZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6MTBweDt9LmF7c3Ryb2tlOiNjYzAwMDA7fS5ie3N0cm9rZTojZmZmO30uY3tzdHJva2U6I2FhYTt9PC9zdHlsZT48L2RlZnM+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTkxOTE5Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjAsIDYwKSI+PGxpbmUgY2xhc3M9ImEiIHgxPSItMzAiIHkxPSItMzAiIHgyPSIzMCIgeTI9IjMwIiAvPjxsaW5lIGNsYXNzPSJhIiB4MT0iMzAiIHkxPSItMzAiIHgyPSItMzAiIHkyPSIzMCIgLz48bGluZSBjbGFzcz0iYiIgeDE9Ii0yMCIgeTE9IjAiIHgyPSIyMCIgeTI9IjAiIC8+PGxpbmUgY2xhc3M9ImIiIHgxPSIwIiB5MT0iLTIwIiB4Mj0iMCIgeTI9IjIwIiAvPjwvZz48L3N2Zz4=",
+                link: "https://developers.redhat.com/products/developer-tools"
             },
             {
                 id: 5,
-                title: "React.js Documentation",
-                description: "Official documentation for the React JavaScript library",
+                title: "Red Hat Integration",
+                description: "Connect applications and data across hybrid infrastructures with messaging, API management, and integration services.",
                 category: "Web Development",
-                imageUrl: "https://source.unsplash.com/random/600x400/?react",
-                link: "https://reactjs.org/docs/getting-started.html"
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48c3R5bGU+LmEsLmIsLmN7ZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6MTBweDt9LmF7c3Ryb2tlOiNjYzAwMDA7fS5ie3N0cm9rZTojZmZmO30uY3tzdHJva2U6I2FhYTt9PC9zdHlsZT48L2RlZnM+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTkxOTE5Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjAsIDYwKSI+PHBhdGggY2xhc3M9ImEiIGQ9Ik0tMzAsMCBDLTMwLC0yMCAtMTAsLTMwIDEwLC0zMCBDMzAsLTMwIDMwLC0xMCAzMCwwIEMzMCwxMCAzMCwzMCAxMCwzMCBDLTEwLDMwIC0zMCwyMCAtMzAsMCBaIiAvPjxwYXRoIGNsYXNzPSJiIiBkPSJNLTE1LDAgQy0xNSwtMTAgLTUsLTE1IDUsLTE1IEMxNSwtMTUgMTUsLTUgMTUsMCBDMTUsNSAxNSwxNSA1LDE1IEMtNSwxNSAtMTUsMTAgLTE1LDAgWiIgLz48L2c+PC9zdmc+",
+                link: "https://www.redhat.com/en/products/integration"
             },
             {
                 id: 6,
-                title: "Color Theory for Designers",
-                description: "Understanding color theory and its application in design projects",
+                title: "Red Hat OpenStack Platform",
+                description: "Create a flexible foundation to deliver cloud-native and traditional applications with greater ease and agility.",
                 category: "Design",
-                imageUrl: "https://source.unsplash.com/random/600x400/?colorpalette",
-                link: "https://www.smashingmagazine.com/2010/01/color-theory-for-designers-part-1-the-meaning-of-color/"
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48c3R5bGU+LmEsLmIsLmN7ZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6MTBweDt9LmF7c3Ryb2tlOiNjYzAwMDA7fS5ie3N0cm9rZTojZmZmO30uY3tzdHJva2U6I2FhYTt9PC9zdHlsZT48L2RlZnM+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTkxOTE5Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjAsIDYwKSI+PHBhdGggY2xhc3M9ImEiIGQ9Ik0gLTMwLDAgQSAzMCwzMCAwIDEsMSAzMCwwIEEgMzAsMzAgMCAxLDEgLTMwLDAiIC8+PHBhdGggY2xhc3M9ImIiIGQ9Ik0gLTIwLDAgQSAyMCwyMCAwIDEsMSAyMCwwIEEgMjAsMjAgMCAxLDEgLTIwLDAiIC8+PC9nPjwvc3ZnPg==",
+                link: "https://www.redhat.com/en/technologies/linux-platforms/openstack-platform"
             },
             {
                 id: 7,
-                title: "SEO Best Practices",
-                description: "Optimize your website for search engines and improve rankings",
+                title: "Red Hat Middleware",
+                description: "Build, deploy, and manage applications at scale with the flexibility and interoperability of our solutions.",
                 category: "Marketing",
-                imageUrl: "https://source.unsplash.com/random/600x400/?seo",
-                link: "https://moz.com/beginners-guide-to-seo"
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48c3R5bGU+LmEsLmIsLmN7ZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6MTBweDt9LmF7c3Ryb2tlOiNjYzAwMDA7fS5ie3N0cm9rZTojZmZmO30uY3tzdHJva2U6I2FhYTt9PC9zdHlsZT48L2RlZnM+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTkxOTE5Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjAsIDYwKSI+PHBhdGggY2xhc3M9ImEiIGQ9Ik0tMzAsLTMwIEwzMCwzMCIgLz48cGF0aCBjbGFzcz0iYSIgZD0iTS0zMCwwIEwzMCwwIiAvPjxwYXRoIGNsYXNzPSJiIiBkPSJNLTMwLDMwIEwzMCwtMzAiIC8+PC9nPjwvc3ZnPg==",
+                link: "https://www.redhat.com/en/products/middleware"
             },
             {
                 id: 8,
-                title: "Python Programming Course",
-                description: "Learn Python programming from scratch with hands-on projects",
+                title: "Red Hat Virtualization",
+                description: "A complete virtualization solution for servers and technical workstations, backed by Red Hat.",
                 category: "Programming",
-                imageUrl: "https://source.unsplash.com/random/600x400/?python",
-                link: "https://www.python.org/about/gettingstarted/"
+                imageUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48c3R5bGU+LmEsLmIsLmN7ZmlsbDpub25lO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6MTBweDt9LmF7c3Ryb2tlOiNjYzAwMDA7fS5ie3N0cm9rZTojZmZmO30uY3tzdHJva2U6I2FhYTt9PC9zdHlsZT48L2RlZnM+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTkxOTE5Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjAsIDYwKSI+PHJlY3QgY2xhc3M9ImEiIHg9Ii0zMCIgeT0iLTMwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIC8+PHJlY3QgY2xhc3M9ImIiIHg9Ii0xNSIgeT0iLTE1IiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIC8+PHJlY3QgY2xhc3M9ImMiIHg9Ii01IiB5PSItNSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiAvPjwvZz48L3N2Zz4=",
+                link: "https://www.redhat.com/en/technologies/virtualization/enterprise-virtualization"
             }
         ];
         
@@ -419,15 +509,19 @@
                         <img src="${item.imageUrl}" alt="${item.title}" class="catalog-image">
                     </div>
                     <div class="catalog-details">
+                        <div class="catalog-pre-title">START</div>
                         <h3 class="catalog-title">${item.title}</h3>
                         <p class="catalog-description">${item.description}</p>
-                        <span class="catalog-category">${item.category}</span>
+                        <a href="${item.link}" target="_blank" class="catalog-button">Get product details</a>
                     </div>
                 `;
                 
-                // Add click event to image
-                const catalogImage = catalogItem.querySelector('.catalog-image');
-                catalogImage.addEventListener('click', () => {
+                // Make the entire item clickable
+                catalogItem.addEventListener('click', (e) => {
+                    // Don't trigger the click if the button was clicked
+                    if (e.target.classList.contains('catalog-button')) {
+                        return;
+                    }
                     window.open(item.link, '_blank');
                 });
                 
@@ -478,8 +572,8 @@
                 });
             });
             
-            // Search functionality
-            const handleSearch = () => {
+            // Real-time search as you type
+            searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.trim();
                 
                 // Get current active category
@@ -489,15 +583,25 @@
                 // Filter and render items
                 const filteredItems = filterCatalogItems(category, searchTerm);
                 renderCatalogItems(filteredItems);
-            };
+            });
             
-            // Search button click
-            searchButton.addEventListener('click', handleSearch);
+            // Keep the search button for accessibility
+            searchButton.addEventListener('click', () => {
+                const searchTerm = searchInput.value.trim();
+                const activeButton = document.querySelector('.filter-button.active');
+                const category = activeButton.getAttribute('data-category');
+                const filteredItems = filterCatalogItems(category, searchTerm);
+                renderCatalogItems(filteredItems);
+            });
             
             // Search on Enter key
             searchInput.addEventListener('keyup', (e) => {
                 if (e.key === 'Enter') {
-                    handleSearch();
+                    const searchTerm = searchInput.value.trim();
+                    const activeButton = document.querySelector('.filter-button.active');
+                    const category = activeButton.getAttribute('data-category');
+                    const filteredItems = filterCatalogItems(category, searchTerm);
+                    renderCatalogItems(filteredItems);
                 }
             });
         }
