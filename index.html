@@ -8,10 +8,12 @@
         :root {
             --primary-color: #cc0000;
             --secondary-color: #333333;
-            --background-color: #151515;
-            --text-color: #ffffff;
-            --card-bg: #252525;
-            --card-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            --background-color: #ffffff;
+            --header-bg: #1a1a1a;
+            --header-text: #ffffff;
+            --text-color: #000000;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         * {
@@ -29,8 +31,8 @@
         }
         
         header {
-            background-color: var(--background-color);
-            color: white;
+            background-color: var(--header-bg);
+            color: var(--header-text);
             padding: 1.5rem 0;
             border-bottom: 1px solid #333;
         }
@@ -51,7 +53,7 @@
         }
         
         .app-dev-text {
-            color: white;
+            color: #333;
             font-size: 18px;
             font-weight: 500;
         }
@@ -183,17 +185,17 @@
         
         .filter-button {
             padding: 0.5rem 1rem;
-            background-color: #333;
-            border: 1px solid #444;
+            background-color: #fff;
+            border: 1px solid #ddd;
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.9rem;
             transition: all 0.2s;
-            color: #fff;
+            color: #333;
         }
         
         .filter-button:hover {
-            background-color: #444;
+            background-color: #f5f5f5;
         }
         
         .filter-button.active {
@@ -210,19 +212,21 @@
         }
         
         .catalog-item {
-            background-color: var(--background-color);
+            background-color: var(--card-bg);
             border-radius: 0;
             overflow: hidden;
             transition: transform 0.2s ease;
             cursor: pointer;
             position: relative;
-            border: 1px solid #333;
-            box-shadow: none;
-            padding-bottom: 2rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 2rem;
+            border-radius: 4px;
         }
         
         .catalog-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .catalog-image-container {
@@ -231,7 +235,7 @@
             overflow: hidden;
             position: relative;
             border: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         .catalog-image {
@@ -253,22 +257,23 @@
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 1px;
-            color: #888;
+            color: var(--primary-color);
             margin-bottom: 0.75rem;
+            font-weight: bold;
         }
         
         .catalog-title {
-            font-size: 1.6rem;
+            font-size: 1.75rem;
             margin-bottom: 1rem;
-            color: white;
+            color: #000;
             font-weight: 600;
             line-height: 1.2;
         }
         
         .catalog-description {
-            margin-bottom: 1.5rem;
-            color: #ccc;
-            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 1.1rem;
             line-height: 1.5;
             flex-grow: 0;
             overflow: visible;
@@ -281,10 +286,10 @@
             display: inline-block;
             padding: 0.8rem 1.5rem;
             background-color: transparent;
-            color: white;
+            color: #000;
             font-size: 1rem;
             font-weight: 600;
-            border: 2px solid white;
+            border: 1px solid #000;
             border-radius: 0;
             text-decoration: none;
             transition: all 0.2s;
@@ -293,8 +298,8 @@
         }
         
         .catalog-button:hover {
-            background-color: white;
-            color: var(--background-color);
+            background-color: #000;
+            color: #fff;
         }
         
         .no-results {
@@ -353,16 +358,16 @@
                             <div class="logo-pointer"></div>
                         </a>
                     </div>
-                    <div class="app-dev-text">Red Hat App Dev</div>
+                    <div class="app-dev-text" style="color: #ffffff;">Red Hat App Dev</div>
                 </div>
                 <ul class="main-menu">
-                    <li><a href="#">AI</a></li>
-                    <li><a href="#">Hybrid cloud</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Training & services</a></li>
-                    <li><a href="#">Resources</a></li>
-                    <li><a href="#">Partners</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#" style="color: #ffffff;">AI</a></li>
+                    <li><a href="#" style="color: #ffffff;">Hybrid cloud</a></li>
+                    <li><a href="#" style="color: #ffffff;">Products</a></li>
+                    <li><a href="#" style="color: #ffffff;">Training & services</a></li>
+                    <li><a href="#" style="color: #ffffff;">Resources</a></li>
+                    <li><a href="#" style="color: #ffffff;">Partners</a></li>
+                    <li><a href="#" style="color: #ffffff;">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -509,10 +514,10 @@
                         <img src="${item.imageUrl}" alt="${item.title}" class="catalog-image">
                     </div>
                     <div class="catalog-details">
-                        <div class="catalog-pre-title">START</div>
+                        <div class="catalog-pre-title">RUN</div>
                         <h3 class="catalog-title">${item.title}</h3>
                         <p class="catalog-description">${item.description}</p>
-                        <a href="${item.link}" target="_blank" class="catalog-button">Get product details</a>
+                        <a href="${item.link}" target="_blank" class="catalog-button">Get portfolio details</a>
                     </div>
                 `;
                 
