@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Catalog</title>
+    <style>
+        :root {
+            --primary-color: #cc0000;
+            --secondary-color: #333333;
+            --background-color: #151515;
+            --text-color: #ffffff;
+            --card-bg: #252525;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Red Hat Text', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding-bottom: 2rem;
+        }
+        
+        header {
+            background-color: var(--background-color);
+            color: white;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .main-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            margin-right: 2rem;
+        }
+        
+        .main-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-menu li {
+            margin: 0 1rem;
+        }
+        
+        .main-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .main-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .search-filter-container {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .search-filter-container {
+            background-color: white;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .search-container {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        #search-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #444;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+            background-color: #333;
+            color: white;
+        }
+        
+        #search-button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        #search-button:hover {
+            background-color: #aa0000;
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: #fff;
+        }
+        
+        .filter-button:hover {
+            background-color: #444;
+        }
+        
+        .filter-button.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .catalog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .catalog-item {
+            background-color: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            border: 1px solid #444;
+        }
+        
+        .catalog-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .catalog-image-container {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid #444;
+        }
+        
+        .catalog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .catalog-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .catalog-details {
+            padding: 1.25rem;
+        }
+        
+        .catalog-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .catalog-description {
+            margin-bottom: 1rem;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        
+        .catalog-category {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            grid-column: 1 / -1;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+            }
+            
+            #search-input {
+                border-radius: 4px;
+                margin-bottom: 0.5rem;
+            }
+            
+            #search-button {
+                border-radius: 4px;
+            }
+            
+            .main-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            .main-menu {
+                flex-wrap: wrap;
+            }
+            
+            .main-menu li {
+                margin: 0.5rem 1rem 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="140" height="36" viewBox="0 0 140 36">
+                        <g fill="none" fill-rule="evenodd">
+                            <path fill="#CC0000" d="M127.333 21.5c0 3.584-2.916 6.5-6.5 6.5s-6.5-2.916-6.5-6.5 2.916-6.5 6.5-6.5 6.5 2.916 6.5 6.5M99.667 8.937l-3.292 12.195-3.292-12.195h-4.083L85.708 21.13l-3.291-12.195h-5.084l5.417 18.292h4.416l3.709-12.277 3.708 12.277h4.417l5.417-18.292zM69.333 18.937c0-2.186-.375-3.966-1.125-5.339-.75-1.373-1.834-2.436-3.25-3.19-1.417-.756-3.219-1.133-5.408-1.133h-9.217v18.292h4.983v-4.834h4.109c2.25 0 4.075-.366 5.475-1.1 1.4-.732 2.442-1.77 3.125-3.116.683-1.346 1.025-3.106 1.025-5.28v-.3zm-4.983 0c0 1.219-.175 2.153-.525 2.802-.35.649-.9 1.116-1.65 1.4-.75.285-1.75.428-3 .428h-4v-9.297h4c1.25 0 2.25.143 3 .428.75.284 1.3.76 1.65 1.428.35.667.525 1.61.525 2.811zM135.133 8.938l-8.183 18.291h5.3l1.65-3.708h8.767l1.65 3.708h5.35l-8.184-18.291h-6.35zm4.367 4.008l2.683 6.334h-5.517l2.834-6.334z"/>
+                            <path fill="#FFFFFF" d="M49.23 10.979c-.718-.49-1.564-.735-2.538-.735-1.119 0-2.084.37-2.893 1.11-.81.742-1.303 1.675-1.48 2.8h-2.767l-.667-2.25H36v13.334h5V16.5h4c.234.967.751 1.742 1.551 2.324.8.582 1.751.873 2.852.873 1.067 0 1.948-.237 2.644-.711.697-.474 1.267-1.117 1.712-1.93.444-.812.701-1.743.773-2.792.073-1.05-.078-1.973-.452-2.769-.375-.795-.932-1.39-1.67-1.785l-.18.269zM44.333 16c-.2.333-.45.583-.75.75-.3.167-.683.25-1.15.25-.467 0-.85-.083-1.15-.25-.3-.167-.55-.417-.75-.75-.2-.333-.3-.75-.3-1.25s.1-.917.3-1.25c.2-.333.45-.583.75-.75.3-.167.683-.25 1.15-.25.467 0 .85.083 1.15.25.3.167.55.417.75.75.2.333.3.75.3 1.25s-.1.917-.3 1.25z"/>
+                            <path fill="#FFFFFF" d="M36 11.8c-.25-.61-.614-1.1-1.094-1.47-.48-.37-1.045-.555-1.698-.555-.652 0-1.218.185-1.698.555-.48.37-.843.86-1.092 1.47-.25.612-.374 1.317-.374 2.117v4.125c0 .8.125 1.51.374 2.13.25.618.613 1.105 1.092 1.46.48.355 1.046.533 1.698.533.653 0 1.219-.178 1.698-.534.48-.355.843-.841 1.094-1.459.25-.618.376-1.33.376-2.13v-4.125c0-.8-.126-1.505-.376-2.116zm-2.5 6.075c0 .25-.035.467-.105.65a.997.997 0 01-.313.442c-.143.11-.334.166-.573.166-.24 0-.43-.055-.573-.166a.997.997 0 01-.313-.443 1.705 1.705 0 01-.105-.65v-3.792c0-.25.035-.465.105-.645a.97.97 0 01.313-.433.998.998 0 01.573-.163c.24 0 .43.054.573.163.143.11.243.253.313.433.07.18.105.396.105.645v3.792zM27.667 9.042s-1.567.075-3.334.325c-1.766.25-3.416.566-4.333.841-.583.175-1.15.375-1.7.6V27.5h3.034V13.308c.438-.158.88-.3 1.325-.425 1.026-.291 2.59-.61 3.675-.717V9.042h1.333z"/>
+                            <path fill="#FFFFFF" d="M16.5 9.042s-1.567.075-3.334.325C11.4 9.617 9.75 9.933 8.833 10.208c-.583.175-1.15.375-1.7.6V27.5h3.034V13.308c.438-.158.88-.3 1.325-.425 1.026-.291 2.59-.61 3.675-.717V9.042H16.5z"/>
+                            <path fill="#CC0000" d="M18.337 22.883c2.417-.017 4.391-1.992 4.396-4.428.005-2.436-1.975-4.422-4.42-4.422-2.416-.025-4.39 1.95-4.396 4.386-.005 2.461 1.975 4.447 4.42 4.464zm0-6.75c1.275 0 2.32 1.042 2.325 2.328.005 1.31-1.028 2.347-2.337 2.347-1.279 0-2.319-1.048-2.324-2.335-.004-1.285 1.053-2.34 2.337-2.34z"/>
+                        </g>
+                    </svg>
+                </div>
+                <ul class="main-menu">
+                    <li><a href="#">AI</a></li>
+                    <li><a href="#">Hybrid cloud</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Training & services</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="search-filter-container">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search by title or description...">
+                <button id="search-button">Search</button>
+            </div>
+            
+            <div class="filter-container">
+                <button class="filter-button active" data-category="all">All</button>
+                <!-- Filter buttons will be dynamically added here -->
+            </div>
+        </section>
+        
+        <section class="catalog-container" id="catalog-container">
+            <!-- Catalog items will be dynamically added here -->
+        </section>
+    </main>
+    
+    <script>
+        // Sample catalog data - Replace with your own data
+        const catalogData = [
+            {
+                id: 1,
+                title: "Responsive Web Design Guide",
+                description: "A comprehensive guide to creating responsive websites that work on all devices",
+                category: "Web Development",
+                imageUrl: "https://source.unsplash.com/random/600x400/?webdesign",
+                link: "https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design"
+            },
+            {
+                id: 2,
+                title: "JavaScript Fundamentals",
+                description: "Learn core JavaScript concepts with practical examples and exercises",
+                category: "Programming",
+                imageUrl: "https://source.unsplash.com/random/600x400/?javascript",
+                link: "https://javascript.info/"
+            },
+            {
+                id: 3,
+                title: "UI/UX Design Principles",
+                description: "Essential principles and best practices for creating great user experiences",
+                category: "Design",
+                imageUrl: "https://source.unsplash.com/random/600x400/?uxdesign",
+                link: "https://www.nngroup.com/articles/ten-usability-heuristics/"
+            },
+            {
+                id: 4,
+                title: "Git & GitHub Tutorial",
+                description: "Master version control with Git and collaboration with GitHub",
+                category: "Development Tools",
+                imageUrl: "https://source.unsplash.com/random/600x400/?github",
+                link: "https://docs.github.com/en/get-started/quickstart"
+            },
+            {
+                id: 5,
+                title: "React.js Documentation",
+                description: "Official documentation for the React JavaScript library",
+                category: "Web Development",
+                imageUrl: "https://source.unsplash.com/random/600x400/?react",
+                link: "https://reactjs.org/docs/getting-started.html"
+            },
+            {
+                id: 6,
+                title: "Color Theory for Designers",
+                description: "Understanding color theory and its application in design projects",
+                category: "Design",
+                imageUrl: "https://source.unsplash.com/random/600x400/?colorpalette",
+                link: "https://www.smashingmagazine.com/2010/01/color-theory-for-designers-part-1-the-meaning-of-color/"
+            },
+            {
+                id: 7,
+                title: "SEO Best Practices",
+                description: "Optimize your website for search engines and improve rankings",
+                category: "Marketing",
+                imageUrl: "https://source.unsplash.com/random/600x400/?seo",
+                link: "https://moz.com/beginners-guide-to-seo"
+            },
+            {
+                id: 8,
+                title: "Python Programming Course",
+                description: "Learn Python programming from scratch with hands-on projects",
+                category: "Programming",
+                imageUrl: "https://source.unsplash.com/random/600x400/?python",
+                link: "https://www.python.org/about/gettingstarted/"
+            }
+        ];
+        
+        // Elements
+        const catalogContainer = document.getElementById('catalog-container');
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const filterContainer = document.querySelector('.filter-container');
+        
+        // Initialize the catalog
+        function initCatalog() {
+            // Generate filter buttons
+            generateFilterButtons();
+            
+            // Render all catalog items initially
+            renderCatalogItems(catalogData);
+            
+            // Setup event listeners
+            setupEventListeners();
+        }
+        
+        // Generate filter buttons based on unique categories
+        function generateFilterButtons() {
+            const categories = [...new Set(catalogData.map(item => item.category))];
+            
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'filter-button';
+                button.setAttribute('data-category', category);
+                button.textContent = category;
+                filterContainer.appendChild(button);
+            });
+        }
+        
+        // Render catalog items
+        function renderCatalogItems(items) {
+            // Clear existing items
+            catalogContainer.innerHTML = '';
+            
+            if (items.length === 0) {
+                const noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.textContent = 'No resources found matching your criteria.';
+                catalogContainer.appendChild(noResults);
+                return;
+            }
+            
+            // Create and append catalog items
+            items.forEach(item => {
+                const catalogItem = document.createElement('div');
+                catalogItem.className = 'catalog-item';
+                
+                catalogItem.innerHTML = `
+                    <div class="catalog-image-container">
+                        <img src="${item.imageUrl}" alt="${item.title}" class="catalog-image">
+                    </div>
+                    <div class="catalog-details">
+                        <h3 class="catalog-title">${item.title}</h3>
+                        <p class="catalog-description">${item.description}</p>
+                        <span class="catalog-category">${item.category}</span>
+                    </div>
+                `;
+                
+                // Add click event to image
+                const catalogImage = catalogItem.querySelector('.catalog-image');
+                catalogImage.addEventListener('click', () => {
+                    window.open(item.link, '_blank');
+                });
+                
+                catalogContainer.appendChild(catalogItem);
+            });
+        }
+        
+        // Filter catalog items
+        function filterCatalogItems(category, searchTerm = '') {
+            let filteredItems = catalogData;
+            
+            // Filter by category if not 'all'
+            if (category !== 'all') {
+                filteredItems = filteredItems.filter(item => item.category === category);
+            }
+            
+            // Filter by search term if provided
+            if (searchTerm) {
+                const term = searchTerm.toLowerCase();
+                filteredItems = filteredItems.filter(item => 
+                    item.title.toLowerCase().includes(term) || 
+                    item.description.toLowerCase().includes(term)
+                );
+            }
+            
+            return filteredItems;
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Filter button click
+            const filterButtons = document.querySelectorAll('.filter-button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Get selected category
+                    const category = button.getAttribute('data-category');
+                    
+                    // Get current search term
+                    const searchTerm = searchInput.value.trim();
+                    
+                    // Filter and render items
+                    const filteredItems = filterCatalogItems(category, searchTerm);
+                    renderCatalogItems(filteredItems);
+                });
+            });
+            
+            // Search functionality
+            const handleSearch = () => {
+                const searchTerm = searchInput.value.trim();
+                
+                // Get current active category
+                const activeButton = document.querySelector('.filter-button.active');
+                const category = activeButton.getAttribute('data-category');
+                
+                // Filter and render items
+                const filteredItems = filterCatalogItems(category, searchTerm);
+                renderCatalogItems(filteredItems);
+            };
+            
+            // Search button click
+            searchButton.addEventListener('click', handleSearch);
+            
+            // Search on Enter key
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    handleSearch();
+                }
+            });
+        }
+        
+        // Initialize the catalog when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initCatalog);
+    </script>
+</body>
+</html>
