@@ -42,11 +42,11 @@ const catalogData = [
     },
     {
         id: 6,
-        title: "Red Hat Connectivity Link",
+        title: "Red Hat Connectivity Link Technical Overview",
         category: "Application Connectivity",
-        contentType: "webpage",
+        contentType: "slides",
         imageUrl: "images/RHCL_rb.png",
-        link: "https://www.redhat.com/en/technologies/cloud-computing/connectivity-link"
+        link: "https://docs.google.com/presentation/d/1KOJeQhhzo-Nie8ESRfp6SqQGz5oZrXi8Xy-ahLK466U/edit#slide=id.g547716335e_0_220"
     },
     {
         id: 7,
@@ -78,7 +78,7 @@ const catalogData = [
         category: "Runtimes",
         contentType: "video",
         imageUrl: "images/runtimes_rb.png",
-        link: "https://youtu.be/WXzvg94Jy0s?si=1ohJB-0yFLNJlzgo"
+        link: "https://www.redhat.com"
     },
     {
         id: 11,
