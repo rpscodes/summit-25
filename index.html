@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Catalog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #cc0000;
@@ -257,12 +258,36 @@
         }
         
         .catalog-pre-title {
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            color: var(--primary-color);
-            margin-bottom: 0.75rem;
-            font-weight: bold;
+            color: #cc0000;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .content-type-icon {
+            font-size: 1rem;
+            color: #cc0000;
+        }
+        
+        .content-type-badge {
+            background: #f5f5f5;
+            color: #666;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        .content-type-label {
+            color: #666;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .catalog-title {
@@ -444,7 +469,13 @@
                         <img src="${item.imageUrl}" alt="${item.title}" class="catalog-image">
                     </div>
                     <div class="catalog-details">
-                        <div class="catalog-pre-title" style="color: #cc0000; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem;">${item.category}</div>
+                        <div class="catalog-pre-title">
+                            ${item.category}
+                        </div>
+                        <div class="content-type-label">
+                            <i class="content-type-icon ${getContentTypeIcon(item.contentType)}"></i>
+                            ${getContentTypeLabel(item.contentType)}
+                        </div>
                         <h3 class="catalog-title">${item.title}</h3>
                         <a href="${item.link}" target="_blank" class="catalog-button">Explore</a>
                     </div>
@@ -537,6 +568,38 @@
                     renderCatalogItems(filteredItems);
                 }
             });
+        }
+        
+        // Helper function to get the appropriate icon class based on content type
+        function getContentTypeIcon(contentType) {
+            switch(contentType) {
+                case 'slides':
+                    return 'fa-solid fa-file-powerpoint';
+                case 'webpage':
+                    return 'fa-solid fa-globe';
+                case 'arcade':
+                    return 'fa-solid fa-gamepad';
+                case 'video':
+                    return 'fa-solid fa-video';
+                default:
+                    return 'fa-solid fa-file';
+            }
+        }
+        
+        // Helper function to get the appropriate label based on content type
+        function getContentTypeLabel(contentType) {
+            switch(contentType) {
+                case 'slides':
+                    return 'Slides';
+                case 'webpage':
+                    return 'Web Page';
+                case 'arcade':
+                    return 'Arcade';
+                case 'video':
+                    return 'Video';
+                default:
+                    return 'Document';
+            }
         }
         
         // Initialize the catalog when DOM is loaded
