@@ -6,7 +6,7 @@ const catalogData = [
         category: "Integration",
         contentType: "arcade",
         imageUrl: "images/camel_rb.png",
-        link: "https://interact.redhat.com/share/lDqpjE28hCKNhqIwEMUT"
+        link: "https://www.redhat.com/architect/portfolio/detail/75-kaoto-apache-camel-integration-designer-demo"
     },
     {
         id: 2,
@@ -86,6 +86,14 @@ const catalogData = [
         category: "Integration",
         contentType: "arcade",
         imageUrl: "images/camel_rb.png",
+        link: "https://interact.redhat.com/share/ahGKXu7HfZ3HcbXXM3SQ"
+    },
+    {
+        id: 12,
+        title: "Red Hat Service Interconnect Customer Deck",
+        category: "Application Connectivity",
+        contentType: "slides",
+        imageUrl: "images/rhsi_rb.png",
         link: "https://interact.redhat.com/share/ahGKXu7HfZ3HcbXXM3SQ"
     }
 ]; 
