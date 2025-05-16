@@ -95,5 +95,53 @@ const catalogData = [
         contentType: "slides",
         imageUrl: "images/rhsi_rb.png",
         link: "https://interact.redhat.com/share/ahGKXu7HfZ3HcbXXM3SQ"
+    },
+    {
+        id: 13,
+        title: "Red Hat Application Foundations Customer Deck",
+        category: "Application Foundations",
+        contentType: "slides",
+        imageUrl: "images/runtimes_rb.png",
+        link: "https://docs.google.com/presentation/d/1BGjhQVI16iYtQfsGdoX3VAZLOPUBJgla0clfxR38LrU/edit?slide=id.g31b831aad22_0_2829#slide=id.g31b831aad22_0_2829"
+    },
+    {
+        id: 14,
+        title: "Red Hat Application Foundations Technical Deck",
+        category: "Application Foundations",
+        contentType: "slides",
+        imageUrl: "images/runtimes_rb.png",
+        link: "https://docs.google.com/presentation/d/14vbEh5fuDFlDDGDObm9lXBQyIzY-sJRU_Nf_144MQ0w/edit?slide=id.g6b8a41c33d_0_0#slide=id.g6b8a41c33d_0_0"
+    },
+    {
+        id: 15,
+        title: "Red Hat Application Foundations Datasheet",
+        category: "Application Foundations",
+        contentType: "webpage",
+        imageUrl: "images/runtimes_rb.png",
+        link: "https://www.redhat.com/en/resources/application-foundations-datasheet"
+    },
+    {
+        id: 16,
+        title: "Red Hat Application Foundations Subscription Guide",
+        category: "Application Foundations",
+        contentType: "webpage",
+        imageUrl: "images/runtimes_rb.png",
+        link: "https://www.redhat.com/en/resources/application-services-subscription-guide-detail?extIdCarryOver=true&intcmp=7013a000003SwrYAAS&sc_cid=701f2000001Css0AAC"
+    },
+    {
+        id: 17,
+        title: "Modernizing Jakarta EE: Slim, Fast Deployments with JBoss EAP",
+        category: "Runtimes",
+        contentType: "arcade",
+        imageUrl: "images/runtimes_rb.png",
+        link: "https://interact.redhat.com/share/eZeOugd4XaljCop0Ie0B"
+    },
+    {
+        id: 18,
+        title: "Minimize downtime when migrating your applications from VMware to OpenShift Virtualization, with Red Hat Service Interconnect",
+        category: "Application Connectivity",
+        contentType: "arcade",
+        imageUrl: "images/rhsi_rb.png",
+        link: "https://interact.redhat.com/share/VHFnz8T9tha8OQEvKBie"
     }
 ]; 
