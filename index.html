@@ -352,7 +352,123 @@
             color: #ccc;
         }
         
+        .top-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .video-section {
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .video-description {
+            display: none;
+        }
+        
+        .video-launch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+        .video-launch-btn:hover {
+            background: #aa0000;
+        }
+        .video-launch-btn .fa-play {
+            font-size: 1.1rem;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            padding: 0;
+            max-width: 640px;
+            width: 90vw;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 1.5rem;
+            color: #333;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+        .modal-video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
         @media (max-width: 768px) {
+            .top-section {
+                grid-template-columns: 1fr;
+            }
+            
             .search-container {
                 flex-direction: column;
             }
@@ -383,6 +499,10 @@
             .main-menu li {
                 margin: 0.5rem 1rem 0.5rem 0;
             }
+            
+            .modal-content {
+                max-width: 98vw;
+            }
         }
     </style>
 </head>
@@ -408,6 +528,9 @@
                     <li><a href="https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025?tab.day=20250518" style="color: #ffffff;" target="_blank">Summit Agenda</a></li>
                     <li><a href="https://developers.redhat.com/" style="color: #ffffff;" target="_blank">Developers</a></li>
                 </ul>
+                <a class="video-launch-btn" href="https://drive.google.com/file/d/1hYoI7vAW0eTsncm6Zu5LS8eaDEI3iEGd/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-play"></i> Booth Display Video
+                </a>
             </nav>
         </div>
     </header>
